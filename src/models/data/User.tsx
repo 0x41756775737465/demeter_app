@@ -1,4 +1,4 @@
-interface IUser {
+export interface IUser {
   getId(): number;
   setId(id: number): void;
   getEmail(): string;
@@ -11,26 +11,29 @@ interface IUser {
   setFirstname(firstname: string): void;
   getUsername(): string;
   setUsername(username: string): void;
-  getNom(): string;
-  setNom(nom: string): void;
 }
 
-class User implements IUser {
+export class User implements IUser {
   private id: number;
   private email: string;
   private token: string;
   private name: string;
   private firstname: string;
   private username: string;
-  private nom: string;
-  constructor() {
-    this.id = 0;
-    this.email = '';
-    this.token = '';
-    this.name = '';
-    this.firstname = '';
-    this.username = '';
-    this.nom = '';
+  constructor(
+    id: number,
+    email: string,
+    token: string,
+    name: string,
+    firstname: string,
+    username: string
+  ) {
+    this.id = id;
+    this.email = email;
+    this.token = token;
+    this.name = name;
+    this.firstname = firstname;
+    this.username = username;
   }
   // Méthodes pour accéder aux attributs privés
   getId(): number {
@@ -70,13 +73,4 @@ class User implements IUser {
   setUsername(username: string): void {
     this.username = username;
   }
-  getNom(): string {
-    return this.nom;
-  }
-  setNom(nom: string): void {
-    this.nom = nom;
-  }
 }
-
-export type { IUser };
-export { User };
