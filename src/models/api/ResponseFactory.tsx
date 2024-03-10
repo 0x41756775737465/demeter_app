@@ -8,6 +8,7 @@ import {
   DemeterUpdateUserResponse,
   IDemeterUpdateUserResponse,
 } from './response/DemeterUpdateUserResponse';
+import { DemeterSignUpResponse, IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
 
 class ResponseFactory {
   static createDemeterResponse(success: boolean, message: string): IDemeterResponse {
@@ -31,6 +32,8 @@ class ResponseFactory {
     message: string
   ): IDemeterConfigurationResponse {
     return new DemeterConfigurationResponse(success, message);
+  static createDemeterSignUpResponse(success: boolean, message: string): IDemeterSignUpResponse {
+    return new DemeterSignUpResponse(success, message);
   }
 }
 

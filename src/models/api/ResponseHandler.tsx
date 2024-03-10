@@ -2,6 +2,7 @@ import { IDemeterConfigurationResponse } from './response/DemeterConfigurationRe
 import { IDemeterLoginResponse } from './response/DemeterLoginResponse';
 import { IDemeterResponse } from './response/DemeterResponse';
 import { IDemeterUpdateUserResponse } from './response/DemeterUpdateUserResponse';
+import { IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
 import ResponseFactory from './ResponseFactory';
 
 class ResponseHandler {
@@ -31,6 +32,11 @@ class ResponseHandler {
     const message: string = jsonData.message;
 
     return ResponseFactory.createDemeterConfigurationResponse(success, message);
+  static jsonToDemeterSignUpResponse(jsonData: any): IDemeterSignUpResponse {
+    const success: boolean = jsonData.success;
+    const message: string = jsonData.message;
+
+    return ResponseFactory.createDemeterSignUpResponse(success, message);
   }
 }
 
