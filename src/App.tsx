@@ -1,12 +1,8 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import Login from './components/views/Login';
 
 const App: React.FC = () => {
-  return (
-    <View>
-      <Text>DEMETER</Text>
-    </View>
-  );
+  return <Login />;
 };
 
 export default App;
