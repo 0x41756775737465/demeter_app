@@ -10,6 +10,7 @@ import {
   DemeterUpdateUsereRequest,
   IDemeterUpdateUserRequest,
 } from './request/DemeterUpdateUserRequest';
+import { DemeterSignUpRequest, IDemeterSignUpRequest } from './request/DemeterSignUpRequest';
 
 class RequestFactory {
   static createDemeterRequest(): IDemeterRequest {
@@ -30,6 +31,13 @@ class RequestFactory {
     configuration: IConfiguration
   ): IDemeterConfigurationRequest {
     return new DemeterConfigurationRequest(user, configuration);
+  static createDemeterSignUpRequest(
+    username: string,
+    email: string,
+    password: string,
+    repeatPassword: string
+  ): IDemeterSignUpRequest {
+    return new DemeterSignUpRequest(username, email, password, repeatPassword);
   }
 }
 
