@@ -3,6 +3,8 @@ import ResponseHandler from '../models/api/ResponseHandler';
 import { API_URL } from '@env';
 import { IDemeterResponse } from '../models/api/response/DemeterResponse';
 import { IDemeterRequest } from '../models/api/request/DemeterRequest';
+import { IDemeterSignUpRequest } from '../models/api/request/DemeterSignUpRequest';
+import { IDemeterSignUpResponse } from '../models/api/response/DemeterSignUpResponse';
 
 export interface IService {
   create(): Promise<IDemeterRequest>;
@@ -86,6 +88,29 @@ export class Service implements IService {
       })
       .catch((error) => {
         return ResponseFactory.createDemeterUpdateUserResponse(false, error.getMessage());
+      });
+  }
+
+  static async signUp(
+    request: IDemeterSignUpRequest
+  ): Promise<IDemeterSignUpResponse | IDemeterResponse> {
+    return await fetch(`${API_URL}/signup`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((jsonData) => {
+        let demeterLoginResponse: IDemeterSignUpResponse =
+          ResponseHandler.jsonToDemeterSignUpResponse(jsonData);
+
+        return demeterLoginResponse;
+      })
+      .catch((error) => {
+        return ResponseFactory.createDemeterResponse(false, error.getMessage());
       });
   }
 }
