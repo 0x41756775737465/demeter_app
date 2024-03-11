@@ -1,5 +1,10 @@
+import { IUser } from '../data/User';
 import { DemeterLoginRequest, IDemeterLoginRequest } from './request/DemeterLoginRequest';
 import { DemeterRequest, IDemeterRequest } from './request/DemeterRequest';
+import {
+  DemeterUpdateUsereRequest,
+  IDemeterUpdateUserRequest,
+} from './request/DemeterUpdateUserRequest';
 
 class RequestFactory {
   static createDemeterRequest(): IDemeterRequest {
@@ -11,6 +16,9 @@ class RequestFactory {
     password: string
   ): IDemeterLoginRequest {
     return new DemeterLoginRequest(username, email, password);
+  }
+  static createDemeterUpdateUserRequest(user: IUser): IDemeterUpdateUserRequest {
+    return new DemeterUpdateUsereRequest(user);
   }
 }
 
