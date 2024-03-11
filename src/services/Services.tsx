@@ -8,6 +8,7 @@ import { IDemeterAlimentRequest } from '../models/api/request/DemeterAlimentRequ
 import { IDemeterAlimentResponse } from '../models/api/response/DemeterAlimentResponse';
 import { IDemeterRecipeRequest } from '../models/api/request/DemeterRecipeRequest';
 import { IDemeterRecipeResponse } from '../models/api/response/DemeterRecipeResponse';
+import { IDemeterAlimentResponse } from '../models/api/response/DemeterLoginResponse copy';
 
 interface IService {
   static async create();
