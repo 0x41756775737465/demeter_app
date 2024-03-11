@@ -41,6 +41,7 @@ class ResponseFactory {
   static createDemeterSignUpResponse(success: boolean, message: string): IDemeterSignUpResponse {
     return new DemeterSignUpResponse(success, message);
   }
+
   static createDemeterAlimentResponse(
     success: boolean,
     message: string,

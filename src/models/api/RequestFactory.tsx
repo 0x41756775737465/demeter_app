@@ -42,6 +42,7 @@ class RequestFactory {
   ): IDemeterSignUpRequest {
     return new DemeterSignUpRequest(username, email, password, repeatPassword);
   }
+
   static createDemeterAlimentRequest(aliment: IAliment): IDemeterAlimentRequest {
     return new DemeterAlimentRequest(aliment);
   }
