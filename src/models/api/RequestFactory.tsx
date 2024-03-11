@@ -4,6 +4,8 @@ import {
   DemeterConfigurationRequest,
   IDemeterConfigurationRequest,
 } from './request/DemeterConfigurationRequest';
+import { IAliment } from '../data/Aliment';
+import { DemeterAlimentRequest, IDemeterAlimentRequest } from './request/DemeterAlimentRequest';
 import { DemeterLoginRequest, IDemeterLoginRequest } from './request/DemeterLoginRequest';
 import { DemeterRequest, IDemeterRequest } from './request/DemeterRequest';
 import {
@@ -39,6 +41,9 @@ class RequestFactory {
     repeatPassword: string
   ): IDemeterSignUpRequest {
     return new DemeterSignUpRequest(username, email, password, repeatPassword);
+  }
+  static createDemeterAlimentRequest(aliment: IAliment): IDemeterAlimentRequest {
+    return new DemeterAlimentRequest(aliment);
   }
 }
 

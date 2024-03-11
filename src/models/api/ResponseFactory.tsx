@@ -2,7 +2,12 @@ import {
   DemeterConfigurationResponse,
   IDemeterConfigurationResponse,
 } from './response/DemeterConfigurationResponse';
+import { IAliment } from '../data/Aliment';
 import { DemeterLoginResponse, IDemeterLoginResponse } from './response/DemeterLoginResponse';
+import {
+  DemeterAlimentResponse,
+  IDemeterAlimentResponse,
+} from './response/DemeterLoginResponse copy';
 import { DemeterResponse, IDemeterResponse } from './response/DemeterResponse';
 import {
   DemeterUpdateUserResponse,
@@ -35,6 +40,13 @@ class ResponseFactory {
   }
   static createDemeterSignUpResponse(success: boolean, message: string): IDemeterSignUpResponse {
     return new DemeterSignUpResponse(success, message);
+  }
+  static createDemeterAlimentResponse(
+    success: boolean,
+    message: string,
+    aliment: IAliment
+  ): IDemeterAlimentResponse {
+    return new DemeterAlimentResponse(success, message, aliment);
   }
 }
 

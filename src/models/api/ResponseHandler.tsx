@@ -1,5 +1,7 @@
 import { IDemeterConfigurationResponse } from './response/DemeterConfigurationResponse';
+import { IAliment } from '../data/Aliment';
 import { IDemeterLoginResponse } from './response/DemeterLoginResponse';
+import { IDemeterAlimentResponse } from './response/DemeterLoginResponse copy';
 import { IDemeterResponse } from './response/DemeterResponse';
 import { IDemeterUpdateUserResponse } from './response/DemeterUpdateUserResponse';
 import { IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
@@ -38,6 +40,12 @@ class ResponseHandler {
     const message: string = jsonData.message;
 
     return ResponseFactory.createDemeterSignUpResponse(success, message);
+  }
+  static jsonToDemeterAlimentResponse(jsonData: any): IDemeterAlimentResponse {
+    const success: boolean = jsonData.success;
+    const message: string = jsonData.message;
+    const aliment: IAliment = jsonData.aliment;
+    return ResponseFactory.createDemeterAlimentResponse(success, message, aliment);
   }
 }
 
