@@ -1,8 +1,13 @@
 import React from 'react';
-import Login from './components/views/Login';
+import Profile from './components/views/Profile';
+import { DataFactory } from './models/data/DataFactory';
 
 const App: React.FC = () => {
-  return <Login />;
+  return (
+    <Profile
+      user={DataFactory.createUser(0, 'test@test.com', '', 'Robert', 'Pirate', 'Red_Robert')}
+    />
+  );
 };
 
 export default App;
