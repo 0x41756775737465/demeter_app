@@ -1,3 +1,7 @@
+import {
+  DemeterConfigurationResponse,
+  IDemeterConfigurationResponse,
+} from './response/DemeterConfigurationResponse';
 import { DemeterLoginResponse, IDemeterLoginResponse } from './response/DemeterLoginResponse';
 import { DemeterResponse, IDemeterResponse } from './response/DemeterResponse';
 import {
@@ -21,6 +25,12 @@ class ResponseFactory {
     message: string
   ): IDemeterUpdateUserResponse {
     return new DemeterUpdateUserResponse(success, message);
+  }
+  static createDemeterConfigurationResponse(
+    success: boolean,
+    message: string
+  ): IDemeterConfigurationResponse {
+    return new DemeterConfigurationResponse(success, message);
   }
 }
 

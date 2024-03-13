@@ -1,4 +1,9 @@
+import { IConfiguration } from '../data/Configuration';
 import { IUser } from '../data/User';
+import {
+  DemeterConfigurationRequest,
+  IDemeterConfigurationRequest,
+} from './request/DemeterConfigurationRequest';
 import { DemeterLoginRequest, IDemeterLoginRequest } from './request/DemeterLoginRequest';
 import { DemeterRequest, IDemeterRequest } from './request/DemeterRequest';
 import {
@@ -19,6 +24,12 @@ class RequestFactory {
   }
   static createDemeterUpdateUserRequest(user: IUser): IDemeterUpdateUserRequest {
     return new DemeterUpdateUsereRequest(user);
+  }
+  static createDemeterConfigurationRequest(
+    user: IUser,
+    configuration: IConfiguration
+  ): IDemeterConfigurationRequest {
+    return new DemeterConfigurationRequest(user, configuration);
   }
 }
 
