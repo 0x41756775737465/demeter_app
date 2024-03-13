@@ -5,7 +5,9 @@ import { IDemeterLoginResponse } from '../models/api/response/DemeterLoginRespon
 import { API_URL } from '@env';
 import { IDemeterResponse } from '../models/api/response/DemeterResponse';
 import { IDemeterAlimentRequest } from '../models/api/request/DemeterAlimentRequest';
-import { IDemeterAlimentResponse } from '../models/api/response/DemeterLoginResponse copy';
+import { IDemeterAlimentResponse } from '../models/api/response/DemeterAlimentResponse';
+import { IDemeterRecipeRequest } from '../models/api/request/DemeterRecipeRequest';
+import { IDemeterRecipeResponse } from '../models/api/response/DemeterRecipeResponse';
 
 interface IService {
   static async create();
@@ -60,4 +62,26 @@ export class Services {
       });
   }
 
+  static async createRecipe(
+    request: IDemeterRecipeRequest
+  ): Promise<IDemeterRecipeResponse | IDemeterResponse> {
+    return await fetch(`${API_URL}/recipe`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((jsonData) => {
+        let demeterRecipeResponse: IDemeterRecipeResponse =
+          ResponseHandler.jsonToDemeterRecipeResponse(jsonData);
+
+        return demeterRecipeResponse;
+      })
+      .catch((error) => {
+        return ResponseFactory.createDemeterResponse(false, error.getMessage());
+      });
+  }
 }
