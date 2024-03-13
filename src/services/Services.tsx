@@ -9,6 +9,8 @@ import { IDemeterAlimentResponse } from '../models/api/response/DemeterAlimentRe
 import { IDemeterRecipeRequest } from '../models/api/request/DemeterRecipeRequest';
 import { IDemeterRecipeResponse } from '../models/api/response/DemeterRecipeResponse';
 import { IDemeterAlimentResponse } from '../models/api/response/DemeterLoginResponse copy';
+import { IDemeterMealRequest } from '../models/api/request/DemeterMealRequest';
+import { IDemeterMealResponse } from '../models/api/response/DemeterMealResponse';
 
 interface IService {
   static async create();
@@ -80,6 +82,29 @@ export class Services {
           ResponseHandler.jsonToDemeterRecipeResponse(jsonData);
 
         return demeterRecipeResponse;
+      })
+      .catch((error) => {
+        return ResponseFactory.createDemeterResponse(false, error.getMessage());
+      });
+  }
+
+  static async createMeal(
+    request: IDemeterMealRequest
+  ): Promise<IDemeterMealResponse | IDemeterResponse> {
+    return await fetch(`${API_URL}/meal`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((jsonData) => {
+        let demeterMealResponse: IDemeterMealResponse =
+          ResponseHandler.jsonToDemeterMealResponse(jsonData);
+
+        return demeterMealResponse;
       })
       .catch((error) => {
         return ResponseFactory.createDemeterResponse(false, error.getMessage());
