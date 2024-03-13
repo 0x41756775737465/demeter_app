@@ -4,16 +4,15 @@ import {
 } from './response/DemeterConfigurationResponse';
 import { IAliment } from '../data/Aliment';
 import { DemeterLoginResponse, IDemeterLoginResponse } from './response/DemeterLoginResponse';
-import {
-  DemeterAlimentResponse,
-  IDemeterAlimentResponse,
-} from './response/DemeterLoginResponse copy';
+import { DemeterAlimentResponse, IDemeterAlimentResponse } from './response/DemeterAlimentResponse';
 import { DemeterResponse, IDemeterResponse } from './response/DemeterResponse';
 import {
   DemeterUpdateUserResponse,
   IDemeterUpdateUserResponse,
 } from './response/DemeterUpdateUserResponse';
 import { DemeterSignUpResponse, IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
+import { IRecipe } from '../data/Recipe';
+import { DemeterRecipeResponse, IDemeterRecipeResponse } from './response/DemeterRecipeResponse';
 
 class ResponseFactory {
   static createDemeterResponse(success: boolean, message: string): IDemeterResponse {
@@ -48,6 +47,13 @@ class ResponseFactory {
     aliment: IAliment
   ): IDemeterAlimentResponse {
     return new DemeterAlimentResponse(success, message, aliment);
+  }
+  static createDemeterRecipeResponse(
+    success: boolean,
+    message: string,
+    recipe: IRecipe
+  ): IDemeterRecipeResponse {
+    return new DemeterRecipeResponse(success, message, recipe);
   }
 }
 

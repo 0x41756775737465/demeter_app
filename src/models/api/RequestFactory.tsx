@@ -5,8 +5,10 @@ import {
   IDemeterConfigurationRequest,
 } from './request/DemeterConfigurationRequest';
 import { IAliment } from '../data/Aliment';
+import { IRecipe } from '../data/Recipe';
 import { DemeterAlimentRequest, IDemeterAlimentRequest } from './request/DemeterAlimentRequest';
 import { DemeterLoginRequest, IDemeterLoginRequest } from './request/DemeterLoginRequest';
+import { DemeterRecipeRequest, IDemeterRecipeRequest } from './request/DemeterRecipeRequest';
 import { DemeterRequest, IDemeterRequest } from './request/DemeterRequest';
 import {
   DemeterUpdateUsereRequest,
@@ -45,6 +47,10 @@ class RequestFactory {
 
   static createDemeterAlimentRequest(aliment: IAliment): IDemeterAlimentRequest {
     return new DemeterAlimentRequest(aliment);
+  }
+
+  static createDemeterRecipeRequest(recipe: IRecipe): IDemeterRecipeRequest {
+    return new DemeterRecipeRequest(recipe);
   }
 }
 

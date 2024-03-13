@@ -1,11 +1,13 @@
 import { IDemeterConfigurationResponse } from './response/DemeterConfigurationResponse';
 import { IAliment } from '../data/Aliment';
 import { IDemeterLoginResponse } from './response/DemeterLoginResponse';
-import { IDemeterAlimentResponse } from './response/DemeterLoginResponse copy';
+import { IDemeterAlimentResponse } from './response/DemeterAlimentResponse';
 import { IDemeterResponse } from './response/DemeterResponse';
 import { IDemeterUpdateUserResponse } from './response/DemeterUpdateUserResponse';
 import { IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
 import ResponseFactory from './ResponseFactory';
+import { IRecipe } from '../data/Recipe';
+import { IDemeterRecipeResponse } from './response/DemeterRecipeResponse';
 
 class ResponseHandler {
   static jsonToDemeterResponse(jsonData: any): IDemeterResponse {
@@ -46,6 +48,12 @@ class ResponseHandler {
     const message: string = jsonData.message;
     const aliment: IAliment = jsonData.aliment;
     return ResponseFactory.createDemeterAlimentResponse(success, message, aliment);
+  }
+  static jsonToDemeterRecipeResponse(jsonData: any): IDemeterRecipeResponse {
+    const success: boolean = jsonData.success;
+    const message: string = jsonData.message;
+    const recipe: IRecipe = jsonData.recipe;
+    return ResponseFactory.createDemeterRecipeResponse(success, message, recipe);
   }
 }
 
