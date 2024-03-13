@@ -11,6 +11,8 @@ import { IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
 import ResponseFactory from './ResponseFactory';
 import { IRecipe } from '../data/Recipe';
 import { IDemeterRecipeResponse } from './response/DemeterRecipeResponse';
+import { IMeal } from '../data/Meal';
+import { IDemeterMealResponse } from './response/DemeterMealResponse';
 
 class ResponseHandler {
   static jsonToDemeterResponse(jsonData: any): IDemeterResponse {
@@ -57,6 +59,12 @@ class ResponseHandler {
     const message: string = jsonData.message;
     const recipe: IRecipe = jsonData.recipe;
     return ResponseFactory.createDemeterRecipeResponse(success, message, recipe);
+  }
+  static jsonToDemeterMealResponse(jsonData: any): IDemeterMealResponse {
+    const success: boolean = jsonData.success;
+    const message: string = jsonData.message;
+    const meal: IMeal = jsonData.meal;
+    return ResponseFactory.createDemeterMealResponse(success, message, meal);
   }
 }
 

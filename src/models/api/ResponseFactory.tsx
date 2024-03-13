@@ -16,6 +16,8 @@ import {
 import { DemeterSignUpResponse, IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
 import { IRecipe } from '../data/Recipe';
 import { DemeterRecipeResponse, IDemeterRecipeResponse } from './response/DemeterRecipeResponse';
+import { DemeterMealResponse, IDemeterMealResponse } from './response/DemeterMealResponse';
+import { IMeal } from '../data/Meal';
 
 class ResponseFactory {
   static createDemeterResponse(success: boolean, message: string): IDemeterResponse {
@@ -57,6 +59,13 @@ class ResponseFactory {
     recipe: IRecipe
   ): IDemeterRecipeResponse {
     return new DemeterRecipeResponse(success, message, recipe);
+  }
+  static createDemeterMealResponse(
+    success: boolean,
+    message: string,
+    meal: IMeal
+  ): IDemeterMealResponse {
+    return new DemeterMealResponse(success, message, meal);
   }
 }
 
