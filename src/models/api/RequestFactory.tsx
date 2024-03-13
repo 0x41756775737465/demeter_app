@@ -7,6 +7,7 @@ import {
 import { IAliment } from '../data/Aliment';
 import { IRecipe } from '../data/Recipe';
 import { IAliment } from '../data/Aliment';
+import { IRecipe } from '../data/Recipe';
 import { DemeterAlimentRequest, IDemeterAlimentRequest } from './request/DemeterAlimentRequest';
 import { DemeterLoginRequest, IDemeterLoginRequest } from './request/DemeterLoginRequest';
 import { DemeterRecipeRequest, IDemeterRecipeRequest } from './request/DemeterRecipeRequest';

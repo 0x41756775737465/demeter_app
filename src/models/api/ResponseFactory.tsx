@@ -7,10 +7,7 @@ import { DemeterLoginResponse, IDemeterLoginResponse } from './response/DemeterL
 import { DemeterAlimentResponse, IDemeterAlimentResponse } from './response/DemeterAlimentResponse';
 import { IAliment } from '../data/Aliment';
 import { DemeterLoginResponse, IDemeterLoginResponse } from './response/DemeterLoginResponse';
-import {
-  DemeterAlimentResponse,
-  IDemeterAlimentResponse,
-} from './response/DemeterLoginResponse copy';
+import { DemeterAlimentResponse, IDemeterAlimentResponse } from './response/DemeterAlimentResponse';
 import { DemeterResponse, IDemeterResponse } from './response/DemeterResponse';
 import {
   DemeterUpdateUserResponse,
