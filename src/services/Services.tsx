@@ -66,4 +66,26 @@ export class Service implements IService {
   getEndoint(): string {
     return this.ENDPOINT;
   }
+  static async createConfiguration(
+    request: IDemeterConfigurationRequest
+  ): Promise<IDemeterConfigurationResponse | IDemeterResponse> {
+    return await fetch(`${API_URL}/configuration`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
+      .then((response) => response.json())
+      .then((jsonData) => {
+        let demeterConfigurationResponse: IDemeterConfigurationResponse =
+          ResponseHandler.jsonToDemeterConfigurationResponse(jsonData);
+
+        return demeterConfigurationResponse;
+      })
+      .catch((error) => {
+        return ResponseFactory.createDemeterUpdateUserResponse(false, error.getMessage());
+      });
+  }
 }
