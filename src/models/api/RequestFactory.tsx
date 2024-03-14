@@ -5,8 +5,6 @@ import {
   IDemeterConfigurationRequest,
 } from './request/DemeterConfigurationRequest';
 import { IAliment } from '../data/Aliment';
-import { IRecipe } from '../data/Recipe';
-import { IAliment } from '../data/Aliment';
 import { IMeal } from '../data/Meal';
 import { IRecipe } from '../data/Recipe';
 import { DemeterAlimentRequest, IDemeterAlimentRequest } from './request/DemeterAlimentRequest';

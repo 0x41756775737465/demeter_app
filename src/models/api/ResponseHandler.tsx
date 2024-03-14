@@ -2,9 +2,6 @@ import { IDemeterConfigurationResponse } from './response/DemeterConfigurationRe
 import { IAliment } from '../data/Aliment';
 import { IDemeterLoginResponse } from './response/DemeterLoginResponse';
 import { IDemeterAlimentResponse } from './response/DemeterAlimentResponse';
-import { IAliment } from '../data/Aliment';
-import { IDemeterLoginResponse } from './response/DemeterLoginResponse';
-import { IDemeterAlimentResponse } from './response/DemeterAlimentResponse';
 import { IDemeterResponse } from './response/DemeterResponse';
 import { IDemeterUpdateUserResponse } from './response/DemeterUpdateUserResponse';
 import { IDemeterSignUpResponse } from './response/DemeterSignUpResponse';

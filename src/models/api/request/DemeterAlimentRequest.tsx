@@ -3,7 +3,6 @@ import { IDemeterLoginResponse } from '../response/DemeterLoginResponse';
 import { IDemeterResponse } from '../response/DemeterResponse';
 import RequestFactory from '../RequestFactory';
 import { IDemeterAlimentResponse } from '../response/DemeterAlimentResponse';
-import { IDemeterAlimentResponse } from '../response/DemeterLoginResponse copy';
 import { IAliment } from '../../data/Aliment';
 
 export interface IDemeterAlimentRequest extends DemeterRequest {
