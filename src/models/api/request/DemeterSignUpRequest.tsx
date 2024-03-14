@@ -1,6 +1,5 @@
 import { isValidEmail, isValidPassword } from '../../../utils/validators';
 import { DemeterRequest } from './DemeterRequest';
-import { Services } from '../../../services/Services';
 import { IDemeterSignUpResponse } from '../response/DemeterSignUpResponse';
 import { IDemeterResponse } from '../response/DemeterResponse';
 import RequestFactory from '../RequestFactory';
@@ -120,18 +119,7 @@ export class DemeterSignUpRequest extends DemeterRequest implements IDemeterSign
   async submit() {
     this.validate();
     if (this.isValide()) {
-      try {
-        const response = await Services.signUp(this);
-
-        this.setResponse(response);
-        if (response.getSuccess()) {
-          this.setMessage(`SUCCESS : ${response.getMessage()}`);
-        } else {
-          this.setMessage(`ERROR : ${response.getMessage()}`);
-        }
-      } catch (error) {
-        this.setMessage(`ERROR : ${error}`);
-      }
+     
     }
   }
 }

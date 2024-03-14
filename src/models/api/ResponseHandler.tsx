@@ -32,6 +32,7 @@ class ResponseHandler {
     const message: string = jsonData.message;
 
     return ResponseFactory.createDemeterConfigurationResponse(success, message);
+  }
   static jsonToDemeterSignUpResponse(jsonData: any): IDemeterSignUpResponse {
     const success: boolean = jsonData.success;
     const message: string = jsonData.message;
