@@ -31,6 +31,7 @@ class RequestFactory {
     configuration: IConfiguration
   ): IDemeterConfigurationRequest {
     return new DemeterConfigurationRequest(user, configuration);
+  }
   static createDemeterSignUpRequest(
     username: string,
     email: string,
