@@ -11,6 +11,7 @@ export interface IUser {
   setFirstname(firstname: string): void;
   getUsername(): string;
   setUsername(username: string): void;
+  isAuthenticated(): boolean;
 }
 
 export class User implements IUser {
@@ -72,5 +73,8 @@ export class User implements IUser {
   }
   setUsername(username: string): void {
     this.username = username;
+  }
+  isAuthenticated(): boolean {
+    return this.token.length > 0;
   }
 }
