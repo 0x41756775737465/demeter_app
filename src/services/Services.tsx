@@ -5,6 +5,12 @@ import { IDemeterLoginResponse } from '../models/api/response/DemeterLoginRespon
 import { API_URL } from '@env';
 import { IDemeterResponse } from '../models/api/response/DemeterResponse';
 
+interface IService {
+  static async create();
+  static async update();
+  static async delete();
+  static getEndoint();
+}
 export class Services {
   static async login(
     request: IDemeterLoginRequest
