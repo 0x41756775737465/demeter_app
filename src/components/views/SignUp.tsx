@@ -49,7 +49,6 @@ const SignUp: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    await request.submit();
     setRequest(request.clone());
   };
 

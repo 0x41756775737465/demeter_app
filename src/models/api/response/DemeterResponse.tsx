@@ -1,26 +1,32 @@
 export interface IDemeterResponse {
-  getSuccess(): boolean;
-  setSuccess(isSuccess: boolean): void;
+  getStatus(): string;
+  setStatus(status: string): void;
+
+  isSuccess(): boolean;
 
   getMessage(): string;
   setMessage(message: string): void;
 }
 
 export class DemeterResponse implements IDemeterResponse {
-  private success: boolean;
+  private status: string;
   private message: string;
 
-  constructor(success: boolean, message: string) {
-    this.success = success;
+  constructor(status: string, message: string) {
+    this.status = status;
     this.message = message;
   }
 
-  getSuccess(): boolean {
-    return this.success;
+  isSuccess(): boolean {
+    return this.getStatus() === 'ok';
   }
 
-  setSuccess(success: boolean) {
-    this.success = success;
+  getStatus(): string {
+    return this.status;
+  }
+
+  setStatus(status: string) {
+    this.status = status;
   }
 
   getMessage(): string {

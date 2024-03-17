@@ -1,12 +1,27 @@
-import React from 'react';
-import Profile from './components/views/Profile';
-import { DataFactory } from './models/data/DataFactory';
+import React, { useState } from 'react';
+import { MyTabs } from './components/component/Tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { Default } from './components/views/Default';
+import { DataFactory } from './models/api/data/DataFactory';
+import { userContext } from './utils/context';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const App: React.FC = () => {
+  const [currentUser, setCurrentUser] = useState(DataFactory.createUser(0, '', '', '', '', ''));
+
   return (
-    <Profile
-      user={DataFactory.createUser(0, 'test@test.com', '', 'Robert', 'Pirate', 'Red_Robert')}
-    />
+    <QueryClientProvider client={queryClient}>
+      <userContext.Provider value={{ currentUser, setCurrentUser }}>
+        <NavigationContainer>
+          {currentUser.getToken() ? <MyTabs /> : <Default />}
+        </NavigationContainer>
+      </userContext.Provider>
+    </QueryClientProvider>
   );
 };
 

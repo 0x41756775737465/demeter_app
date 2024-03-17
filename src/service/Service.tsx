@@ -3,39 +3,58 @@ import ResponseHandler from '../models/api/ResponseHandler';
 import { API_URL } from '@env';
 import { IDemeterResponse } from '../models/api/response/DemeterResponse';
 import { IDemeterRequest } from '../models/api/request/DemeterRequest';
-import { IUser } from '../models/data/User';
+import { IUser } from '../models/api/data/User';
+import RequestFactory from '../models/api/RequestFactory';
 
 export interface IService {
-  create(): Promise<IDemeterRequest>;
-  update(): Promise<IDemeterRequest>;
-  delete(): Promise<IDemeterRequest>;
+  create<T extends IDemeterRequest>(request: T): Promise<T>;
+  update<T extends IDemeterRequest>(request: T): Promise<T>;
+  delete<T extends IDemeterRequest>(request: T): Promise<T>;
   getBaseURL(): string;
   getEndoint(): string;
-  call(request: IDemeterRequest, method: string): Promise<IDemeterResponse>;
+  call<T extends IDemeterRequest, U extends IDemeterResponse>(
+    request: T,
+    method: string
+  ): Promise<U>;
 }
 export class Service implements IService {
-  private BASE_URL: string;
+  public static GET: string = 'GET';
+  public static CREATE: string = 'POST';
+  public static UPDATE: string = 'PUT';
+  public static DELETE: string = 'DELETE';
+  public static METHODS: string[] = [Service.GET, Service.CREATE, Service.UPDATE, Service.DELETE];
+
+  public static BASE_URL: string = `${API_URL}`;
   private ENDPOINT: string;
   private URL: string;
   private user: IUser;
+  private request: IDemeterRequest;
 
   constructor(endpoint: string, user: IUser) {
-    this.BASE_URL = `${API_URL}`;
     this.ENDPOINT = `${endpoint}`;
     this.URL = `${API_URL}${this.ENDPOINT}`;
     this.user = user;
+    this.request = RequestFactory.createDemeterRequest();
   }
-  create(): Promise<IDemeterRequest> {
+  get<T extends IDemeterRequest>(request: T): Promise<T> {
+    throw new Error('get() method must be implemented');
+  }
+  create<T extends IDemeterRequest>(request: T): Promise<T> {
     throw new Error('create() method must be implemented');
   }
-  update(): Promise<IDemeterRequest> {
+  update<T extends IDemeterRequest>(request: T): Promise<T> {
     throw new Error('update() method must be implemented');
   }
-  delete(): Promise<IDemeterRequest> {
+  delete<T extends IDemeterRequest>(request: T): Promise<T> {
     throw new Error('delete() method must be implemented');
   }
 
-  async call(request: IDemeterRequest, method: string): Promise<IDemeterResponse> {
+  async call<T extends IDemeterRequest, U extends IDemeterResponse>(
+    request: T,
+    method: string,
+    serializer: any
+  ): Promise<U> {
+    console.log('CALLING : ', this.URL);
     return await fetch(this.URL, {
       method: method,
       mode: 'cors',
@@ -47,13 +66,14 @@ export class Service implements IService {
     })
       .then((response) => response.json())
       .then((jsonData) => {
-        let demeterRecipeResponse: IDemeterResponse =
-          ResponseHandler.jsonToDemeterResponse(jsonData);
+        console.log('jsonData', jsonData);
+        let demeterRecipeResponse = serializer(jsonData);
 
         return demeterRecipeResponse;
       })
       .catch((error) => {
-        return ResponseFactory.createDemeterResponse(false, error.getMessage());
+        console.log('error', error);
+        return ResponseFactory.createDemeterResponse('ko', error.getMessage());
       });
   }
 
@@ -66,5 +86,9 @@ export class Service implements IService {
   }
   getEndoint(): string {
     return this.ENDPOINT;
+  }
+
+  getMethods(): string[] {
+    return Service.METHODS;
   }
 }

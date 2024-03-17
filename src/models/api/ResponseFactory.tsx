@@ -2,67 +2,62 @@ import {
   DemeterConfigurationResponse,
   IDemeterConfigurationResponse,
 } from './response/DemeterConfigurationResponse';
-import { IAliment } from '../data/Aliment';
-import { DemeterLoginResponse, IDemeterLoginResponse } from './response/DemeterLoginResponse';
+import { IAliment } from './data/Aliment';
+import { DemeterAuthResponse, IDemeterAuthResponse } from './response/DemeterAuthResponse';
 import { DemeterAlimentResponse, IDemeterAlimentResponse } from './response/DemeterAlimentResponse';
 import { DemeterResponse, IDemeterResponse } from './response/DemeterResponse';
-import {
-  DemeterUpdateUserResponse,
-  IDemeterUpdateUserResponse,
-} from './response/DemeterUpdateUserResponse';
-import { DemeterSignUpResponse, IDemeterSignUpResponse } from './response/DemeterSignUpResponse';
-import { IRecipe } from '../data/Recipe';
+import { DemeterUserResponse, IDemeterUserResponse } from './response/DemeterUserResponse';
+import { IRecipe } from './data/Recipe';
 import { DemeterRecipeResponse, IDemeterRecipeResponse } from './response/DemeterRecipeResponse';
 import { DemeterMealResponse, IDemeterMealResponse } from './response/DemeterMealResponse';
-import { IMeal } from '../data/Meal';
+import { IMeal } from './data/Meal';
+import { IUser } from './data/User';
 
 class ResponseFactory {
-  static createDemeterResponse(success: boolean, message: string): IDemeterResponse {
-    return new DemeterResponse(success, message);
+  static createDemeterResponse(status: string, message: string): IDemeterResponse {
+    return new DemeterResponse(status, message);
   }
-  static createDemeterLoginResponse(
-    success: boolean,
+  static createDemeterAuthResponse(
+    status: string,
     message: string,
     token: string
-  ): IDemeterLoginResponse {
-    return new DemeterLoginResponse(success, message, token);
+  ): IDemeterAuthResponse {
+    return new DemeterAuthResponse(status, message, token);
   }
-  static createDemeterUpdateUserResponse(
-    success: boolean,
-    message: string
-  ): IDemeterUpdateUserResponse {
-    return new DemeterUpdateUserResponse(success, message);
+  static createDemeterUserResponse(
+    status: string,
+    message: string,
+    users: IUser[]
+  ): IDemeterUserResponse {
+    return new DemeterUserResponse(status, message, users);
   }
   static createDemeterConfigurationResponse(
-    success: boolean,
+    status: string,
     message: string
   ): IDemeterConfigurationResponse {
-    return new DemeterConfigurationResponse(success, message);
-  }
-  static createDemeterSignUpResponse(success: boolean, message: string): IDemeterSignUpResponse {
-    return new DemeterSignUpResponse(success, message);
+    return new DemeterConfigurationResponse(status, message);
   }
 
   static createDemeterAlimentResponse(
-    success: boolean,
+    status: string,
     message: string,
     aliment: IAliment
   ): IDemeterAlimentResponse {
-    return new DemeterAlimentResponse(success, message, aliment);
+    return new DemeterAlimentResponse(status, message, aliment);
   }
   static createDemeterRecipeResponse(
-    success: boolean,
+    status: string,
     message: string,
     recipe: IRecipe
   ): IDemeterRecipeResponse {
-    return new DemeterRecipeResponse(success, message, recipe);
+    return new DemeterRecipeResponse(status, message, recipe);
   }
   static createDemeterMealResponse(
-    success: boolean,
+    status: string,
     message: string,
     meal: IMeal
   ): IDemeterMealResponse {
-    return new DemeterMealResponse(success, message, meal);
+    return new DemeterMealResponse(status, message, meal);
   }
 }
 

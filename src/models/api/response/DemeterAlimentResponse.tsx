@@ -1,4 +1,4 @@
-import { IAliment } from '../../data/Aliment';
+import { IAliment } from '../data/Aliment';
 import { DemeterResponse, IDemeterResponse } from './DemeterResponse';
 
 export interface IDemeterAlimentResponse extends IDemeterResponse {
@@ -9,8 +9,8 @@ export interface IDemeterAlimentResponse extends IDemeterResponse {
 export class DemeterAlimentResponse extends DemeterResponse implements IDemeterAlimentResponse {
   private aliment: IAliment;
 
-  constructor(success: boolean, message: string, aliment: IAliment) {
-    super(success, message);
+  constructor(status: string, message: string, aliment: IAliment) {
+    super(status, message);
     this.aliment = aliment;
   }
 

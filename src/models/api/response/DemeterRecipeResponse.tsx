@@ -1,4 +1,4 @@
-import { IRecipe } from '../../data/Recipe';
+import { IRecipe } from '../data/Recipe';
 import { DemeterResponse, IDemeterResponse } from './DemeterResponse';
 
 export interface IDemeterRecipeResponse extends IDemeterResponse {
@@ -9,8 +9,8 @@ export interface IDemeterRecipeResponse extends IDemeterResponse {
 export class DemeterRecipeResponse extends DemeterResponse implements IDemeterRecipeResponse {
   private recipe: IRecipe;
 
-  constructor(success: boolean, message: string, recipe: IRecipe) {
-    super(success, message);
+  constructor(status: string, message: string, recipe: IRecipe) {
+    super(status, message);
     this.recipe = recipe;
   }
 

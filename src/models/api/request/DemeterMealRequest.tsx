@@ -1,16 +1,14 @@
 import { DemeterRequest } from './DemeterRequest';
-import { Services } from '../../../services/Services';
 import { IDemeterMealResponse } from '../response/DemeterMealResponse';
 import { IDemeterResponse } from '../response/DemeterResponse';
 import RequestFactory from '../RequestFactory';
-import { IMeal } from '../../data/Meal';
+import { IMeal } from '../data/Meal';
 
 export interface IDemeterMealRequest extends DemeterRequest {
   getResponse(): IDemeterMealResponse | IDemeterResponse | undefined;
   setResponse(response: IDemeterMealResponse | IDemeterResponse): void;
-
-  submit(): void;
-
+  getMeal(): IMeal;
+  setMeal(Meal: IMeal): void;
   clone(): IDemeterMealRequest;
 }
 
@@ -51,22 +49,5 @@ export class DemeterMealRequest extends DemeterRequest implements IDemeterMealRe
       newObject.setInValide();
     }
     return newObject;
-  }
-  async submit() {
-    this.validate();
-    if (this.isValide()) {
-      try {
-        const response = await Services.createMeal(this);
-
-        this.setResponse(response);
-        if (response.getSuccess()) {
-          this.setMessage(`SUCCESS : ${response.getMessage()}`);
-        } else {
-          this.setMessage(`ERROR : ${response.getMessage()}`);
-        }
-      } catch (error) {
-        this.setMessage(`ERROR : ${error}`);
-      }
-    }
   }
 }

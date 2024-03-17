@@ -1,6 +1,7 @@
 import { IDemeterAlimentRequest } from '../../models/api/request/DemeterAlimentRequest';
-import { IUser } from '../../models/data/User';
+import { IUser } from '../../models/api/data/User';
 import { IService, Service } from '../Service';
+import { IDemeterAlimentResponse } from '../../models/api/response/DemeterAlimentResponse';
 
 export interface IDemeterAlimentService extends IService {}
 
@@ -8,13 +9,16 @@ export class DemeterAlimentService extends Service implements IDemeterAlimentSer
   constructor(user: IUser) {
     super('aliment', user);
   }
-  create(): Promise<IDemeterAlimentRequest> {
-    throw new Error('Method not implemented.');
+  override get(request: IDemeterAlimentRequest): Promise<IDemeterAlimentResponse> {
+    return this.call(request, Service.GET);
   }
-  update(): Promise<IDemeterAlimentRequest> {
-    throw new Error('Method not implemented.');
+  create(request: IDemeterAlimentRequest): Promise<IDemeterAlimentResponse> {
+    return this.call(request, Service.CREATE);
   }
-  delete(): Promise<IDemeterAlimentRequest> {
-    throw new Error('Method not implemented.');
+  update(request: IDemeterAlimentRequest): Promise<IDemeterAlimentResponse> {
+    return this.call(request, Service.UPDATE);
+  }
+  delete(request: IDemeterAlimentRequest): Promise<IDemeterAlimentResponse> {
+    return this.call(request, Service.DELETE);
   }
 }

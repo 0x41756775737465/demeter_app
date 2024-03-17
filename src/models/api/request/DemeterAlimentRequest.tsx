@@ -1,9 +1,9 @@
 import { DemeterRequest } from './DemeterRequest';
-import { IDemeterLoginResponse } from '../response/DemeterLoginResponse';
+import { IDemeterAuthResponse } from '../response/DemeterAuthResponse';
 import { IDemeterResponse } from '../response/DemeterResponse';
 import RequestFactory from '../RequestFactory';
 import { IDemeterAlimentResponse } from '../response/DemeterAlimentResponse';
-import { IAliment } from '../../data/Aliment';
+import { IAliment } from '../data/Aliment';
 
 export interface IDemeterAlimentRequest extends DemeterRequest {
   getAliment(): IAliment;
@@ -12,14 +12,12 @@ export interface IDemeterAlimentRequest extends DemeterRequest {
   getResponse(): IDemeterAlimentResponse | IDemeterResponse | undefined;
   setResponse(response: IDemeterAlimentResponse | IDemeterResponse): void;
 
-  submit(): void;
-
   clone(): IDemeterAlimentRequest;
 }
 
 export class DemeterAlimentRequest extends DemeterRequest implements IDemeterAlimentRequest {
   private aliment: IAliment;
-  private response: IDemeterLoginResponse | IDemeterResponse | undefined;
+  private response: IDemeterAuthResponse | IDemeterResponse | undefined;
 
   constructor(aliment: IAliment) {
     super();

@@ -1,6 +1,7 @@
 import { IDemeterRecipeRequest } from '../../models/api/request/DemeterRecipeRequest';
-import { IUser } from '../../models/data/User';
+import { IUser } from '../../models/api/data/User';
 import { IService, Service } from '../Service';
+import { IDemeterRecipeResponse } from '../../models/api/response/DemeterRecipeResponse';
 
 export interface IDemeterRecipeService extends IService {}
 
@@ -8,13 +9,16 @@ export class DemeterRecipeService extends Service implements IDemeterRecipeServi
   constructor(user: IUser) {
     super('recipe', user);
   }
-  create(): Promise<IDemeterRecipeRequest> {
-    throw new Error('Method not implemented.');
+  get(request: IDemeterRecipeRequest): Promise<IDemeterRecipeResponse> {
+    return this.call(request, Service.GET);
   }
-  update(): Promise<IDemeterRecipeRequest> {
-    throw new Error('Method not implemented.');
+  create(request: IDemeterRecipeRequest): Promise<IDemeterRecipeResponse> {
+    return this.call(request, Service.CREATE);
   }
-  delete(): Promise<IDemeterRecipeRequest> {
-    throw new Error('Method not implemented.');
+  update(request: IDemeterRecipeRequest): Promise<IDemeterRecipeResponse> {
+    return this.call(request, Service.UPDATE);
+  }
+  delete(request: IDemeterRecipeRequest): Promise<IDemeterRecipeResponse> {
+    return this.call(request, Service.DELETE);
   }
 }

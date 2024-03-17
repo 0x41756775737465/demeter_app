@@ -1,10 +1,10 @@
 import { isValidEmail, isValidPassword } from '../../../utils/validators';
 import { DemeterRequest } from './DemeterRequest';
-import { IDemeterLoginResponse } from '../response/DemeterLoginResponse';
+import { IDemeterAuthResponse } from '../response/DemeterAuthResponse';
 import { IDemeterResponse } from '../response/DemeterResponse';
 import RequestFactory from '../RequestFactory';
 
-export interface IDemeterLoginRequest extends DemeterRequest {
+export interface IDemeterAuthRequest extends DemeterRequest {
   getEmail(): string;
   setEmail(email: string): void;
 
@@ -14,19 +14,17 @@ export interface IDemeterLoginRequest extends DemeterRequest {
   getPassword(): string;
   setPassword(password: string): void;
 
-  getResponse(): IDemeterLoginResponse | IDemeterResponse | undefined;
-  setResponse(response: IDemeterLoginResponse | IDemeterResponse): void;
+  getResponse(): IDemeterAuthResponse | IDemeterResponse | undefined;
+  setResponse(response: IDemeterAuthResponse | IDemeterResponse): void;
 
-  submit(): void;
-
-  clone(): IDemeterLoginRequest;
+  clone(): IDemeterAuthRequest;
 }
 
-export class DemeterLoginRequest extends DemeterRequest implements IDemeterLoginRequest {
+export class DemeterAuthRequest extends DemeterRequest implements IDemeterAuthRequest {
   private username: string;
   private email: string;
   private password: string;
-  private response: IDemeterLoginResponse | IDemeterResponse | undefined;
+  private response: IDemeterAuthResponse | IDemeterResponse | undefined;
 
   constructor(username: string, email: string, password: string) {
     super();
@@ -60,11 +58,11 @@ export class DemeterLoginRequest extends DemeterRequest implements IDemeterLogin
     this.password = password;
   }
 
-  getResponse(): IDemeterLoginResponse | IDemeterResponse | undefined {
+  getResponse(): IDemeterAuthResponse | IDemeterResponse | undefined {
     return this.response;
   }
 
-  setResponse(response: IDemeterLoginResponse | IDemeterResponse): void {
+  setResponse(response: IDemeterAuthResponse | IDemeterResponse): void {
     this.response = response;
   }
 
@@ -83,12 +81,13 @@ export class DemeterLoginRequest extends DemeterRequest implements IDemeterLogin
       this.setMessage('Votre adresse email est incorrect');
     }
   }
-  clone(): IDemeterLoginRequest {
-    let newObject = RequestFactory.createDemeterLoginRequest(
+  clone(): IDemeterAuthRequest {
+    let newObject = RequestFactory.createDemeterAuthRequest(
       this.getUsername(),
       this.getEmail(),
       this.getPassword()
     );
+    newObject.setResponse(this.getResponse());
     newObject.setMessage(this.getMessage());
     if (this.isValide()) {
       newObject.setValide();
@@ -96,11 +95,5 @@ export class DemeterLoginRequest extends DemeterRequest implements IDemeterLogin
       newObject.setInValide();
     }
     return newObject;
-  }
-  async submit() {
-    this.validate();
-    if (this.isValide()) {
-
-    }
   }
 }

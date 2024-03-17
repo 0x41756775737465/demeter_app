@@ -2,8 +2,8 @@ import { DemeterRequest } from './DemeterRequest';
 import { IDemeterConfigurationResponse } from '../response/DemeterConfigurationResponse';
 import { IDemeterResponse } from '../response/DemeterResponse';
 import RequestFactory from '../RequestFactory';
-import { IUser } from '../../data/User';
-import { IConfiguration } from '../../data/Configuration';
+import { IUser } from '../data/User';
+import { IConfiguration } from '../data/Configuration';
 
 export interface IDemeterConfigurationRequest extends DemeterRequest {
   getConfiguration(): IConfiguration;
@@ -14,8 +14,6 @@ export interface IDemeterConfigurationRequest extends DemeterRequest {
 
   getResponse(): IDemeterConfigurationResponse | IDemeterResponse | undefined;
   setResponse(response: IDemeterConfigurationResponse | IDemeterResponse): void;
-
-  submit(): void;
 
   clone(): IDemeterConfigurationRequest;
 }
@@ -74,11 +72,5 @@ export class DemeterConfigurationRequest
       newObject.setInValide();
     }
     return newObject;
-  }
-  async submit() {
-    this.validate();
-    if (this.isValide()) {
-
-    }
   }
 }

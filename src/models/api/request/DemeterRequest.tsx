@@ -3,7 +3,6 @@ export interface IDemeterRequest {
   setInValide(): void;
   isValide(): boolean;
   validate(): void;
-  submit(): void;
   setMessage(message: string): void;
   getMessage(): string;
 }
@@ -11,7 +10,6 @@ export interface IDemeterRequest {
 export class DemeterRequest implements IDemeterRequest {
   private message: string;
   private valide: boolean;
-
   constructor() {
     this.message = '';
     this.valide = false;
@@ -35,10 +33,6 @@ export class DemeterRequest implements IDemeterRequest {
 
   setMessage(message: string): void {
     this.message = message;
-  }
-
-  submit() {
-    throw new Error('submit() method must be implemented');
   }
 
   validate(): void {

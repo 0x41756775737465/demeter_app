@@ -8,7 +8,7 @@ const Home: React.FC = () => {
       <Text>DEMETER</Text>
       <Text>ENV : {ENV_NAME}</Text>
       <Text>VERSION : {VERSION}</Text>
-      <Button title="Login" />
+      <Button title="Auth" />
     </View>
   );
 };

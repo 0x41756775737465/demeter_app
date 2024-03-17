@@ -1,15 +1,12 @@
 import { DemeterRequest } from './DemeterRequest';
-import { Services } from '../../../services/Services';
 import { IDemeterRecipeResponse } from '../response/DemeterRecipeResponse';
 import { IDemeterResponse } from '../response/DemeterResponse';
 import RequestFactory from '../RequestFactory';
-import { IRecipe } from '../../data/Recipe';
+import { IRecipe } from '../data/Recipe';
 
 export interface IDemeterRecipeRequest extends DemeterRequest {
   getResponse(): IDemeterRecipeResponse | IDemeterResponse | undefined;
   setResponse(response: IDemeterRecipeResponse | IDemeterResponse): void;
-
-  submit(): void;
 
   clone(): IDemeterRecipeRequest;
 }
@@ -51,22 +48,5 @@ export class DemeterRecipeRequest extends DemeterRequest implements IDemeterReci
       newObject.setInValide();
     }
     return newObject;
-  }
-  async submit() {
-    this.validate();
-    if (this.isValide()) {
-      try {
-        const response = await Services.createRecipe(this);
-
-        this.setResponse(response);
-        if (response.getSuccess()) {
-          this.setMessage(`SUCCESS : ${response.getMessage()}`);
-        } else {
-          this.setMessage(`ERROR : ${response.getMessage()}`);
-        }
-      } catch (error) {
-        this.setMessage(`ERROR : ${error}`);
-      }
-    }
   }
 }

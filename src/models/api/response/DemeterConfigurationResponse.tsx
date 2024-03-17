@@ -6,7 +6,7 @@ export class DemeterConfigurationResponse
   extends DemeterResponse
   implements IDemeterConfigurationResponse
 {
-  constructor(success: boolean, message: string) {
-    super(success, message);
+  constructor(status: string, message: string) {
+    super(status, message);
   }
 }

@@ -1,6 +1,7 @@
 import { IDemeterConfigurationRequest } from '../../models/api/request/DemeterConfigurationRequest';
-import { IUser } from '../../models/data/User';
+import { IUser } from '../../models/api/data/User';
 import { IService, Service } from '../Service';
+import { IDemeterConfigurationResponse } from '../../models/api/response/DemeterConfigurationResponse';
 
 export interface IDemeterConfigurationService extends IService {}
 
@@ -8,13 +9,16 @@ export class DemeterConfigurationService extends Service implements IDemeterConf
   constructor(user: IUser) {
     super('configuration', user);
   }
-  create(): Promise<IDemeterConfigurationRequest> {
-    throw new Error('Method not implemented.');
+  get(request: IDemeterConfigurationRequest): Promise<IDemeterConfigurationResponse> {
+    return this.call(request, Service.GET);
   }
-  update(): Promise<IDemeterConfigurationRequest> {
-    throw new Error('Method not implemented.');
+  create(request: IDemeterConfigurationRequest): Promise<IDemeterConfigurationResponse> {
+    return this.call(request, Service.CREATE);
   }
-  delete(): Promise<IDemeterConfigurationRequest> {
-    throw new Error('Method not implemented.');
+  update(request: IDemeterConfigurationRequest): Promise<IDemeterConfigurationResponse> {
+    return this.call(request, Service.UPDATE);
+  }
+  delete(request: IDemeterConfigurationRequest): Promise<IDemeterConfigurationResponse> {
+    return this.call(request, Service.DELETE);
   }
 }

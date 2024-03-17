@@ -1,36 +1,33 @@
-import { IConfiguration } from '../data/Configuration';
-import { IUser } from '../data/User';
+import { IConfiguration } from './data/Configuration';
+import { IUser } from './data/User';
 import {
   DemeterConfigurationRequest,
   IDemeterConfigurationRequest,
 } from './request/DemeterConfigurationRequest';
-import { IAliment } from '../data/Aliment';
-import { IMeal } from '../data/Meal';
-import { IRecipe } from '../data/Recipe';
+import { IAliment } from './data/Aliment';
+import { IMeal } from './data/Meal';
+import { IRecipe } from './data/Recipe';
 import { DemeterAlimentRequest, IDemeterAlimentRequest } from './request/DemeterAlimentRequest';
-import { DemeterLoginRequest, IDemeterLoginRequest } from './request/DemeterLoginRequest';
+import { DemeterAuthRequest, IDemeterAuthRequest } from './request/DemeterAuthRequest';
 import { DemeterMealRequest, IDemeterMealRequest } from './request/DemeterMealRequest';
 import { DemeterRecipeRequest, IDemeterRecipeRequest } from './request/DemeterRecipeRequest';
 import { DemeterRequest, IDemeterRequest } from './request/DemeterRequest';
-import {
-  DemeterUpdateUsereRequest,
-  IDemeterUpdateUserRequest,
-} from './request/DemeterUpdateUserRequest';
+import { DemeterUserRequest, IDemeterUserRequest } from './request/DemeterUserRequest';
 import { DemeterSignUpRequest, IDemeterSignUpRequest } from './request/DemeterSignUpRequest';
 
 class RequestFactory {
   static createDemeterRequest(): IDemeterRequest {
     return new DemeterRequest();
   }
-  static createDemeterLoginRequest(
+  static createDemeterAuthRequest(
     username: string,
     email: string,
     password: string
-  ): IDemeterLoginRequest {
-    return new DemeterLoginRequest(username, email, password);
+  ): IDemeterAuthRequest {
+    return new DemeterAuthRequest(username, email, password);
   }
-  static createDemeterUpdateUserRequest(user: IUser): IDemeterUpdateUserRequest {
-    return new DemeterUpdateUsereRequest(user);
+  static createDemeterUserRequest(user: IUser): IDemeterUserRequest {
+    return new DemeterUserRequest(user);
   }
   static createDemeterConfigurationRequest(
     user: IUser,

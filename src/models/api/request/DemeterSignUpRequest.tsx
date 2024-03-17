@@ -20,8 +20,6 @@ export interface IDemeterSignUpRequest extends DemeterRequest {
   getResponse(): IDemeterSignUpResponse | IDemeterResponse | undefined;
   setResponse(response: IDemeterSignUpResponse | IDemeterResponse): void;
 
-  submit(): void;
-
   clone(): IDemeterSignUpRequest;
 }
 
@@ -115,11 +113,5 @@ export class DemeterSignUpRequest extends DemeterRequest implements IDemeterSign
       newObject.setInValide();
     }
     return newObject;
-  }
-  async submit() {
-    this.validate();
-    if (this.isValide()) {
-     
-    }
   }
 }
